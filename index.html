@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Alpha Bravo — NATO Phonetic Alphabet Trainer for iOS. Train your visual and listening recognition of all 29 NATO characters." />
+  <title>Alpha Bravo — NATO Phonetic Alphabet Trainer</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0f172a;
+      --bg2:      #1e293b;
+      --cyan:     #22d3ee;
+      --cyan-dim: rgba(34,211,238,0.08);
+      --cyan-bdr: rgba(34,211,238,0.2);
+      --slate:    #94a3b8;
+      --slate-dk: #64748b;
+      --white:    #f1f5f9;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container { max-width: 680px; margin: 0 auto; padding: 0 24px; }
+
+    /* Nav */
+    nav { border-bottom: 1px solid rgba(148,163,184,0.1); padding: 20px 0; }
+    nav .container { display: flex; align-items: center; justify-content: space-between; }
+    .nav-brand { font-size: 15px; font-weight: 700; letter-spacing: 3px; color: var(--white); text-decoration: none; }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a { font-size: 13px; color: var(--slate); text-decoration: none; transition: color .15s; }
+    .nav-links a:hover { color: var(--cyan); }
+
+    /* Hero */
+    .hero { padding: 80px 0 60px; text-align: center; }
+    .hero-icon {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: var(--cyan-dim); border: 1px solid var(--cyan-bdr);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 28px;
+    }
+    .hero-icon svg { width: 36px; height: 36px; stroke: var(--cyan); fill: none; stroke-width: 1.5; stroke-linecap: round; }
+    h1 { font-size: clamp(28px, 6vw, 46px); font-weight: 800; letter-spacing: 4px; margin-bottom: 8px; }
+    .hero-subtitle { font-size: 15px; color: var(--slate); letter-spacing: 1px; margin-bottom: 32px; }
+    .divider { width: 40px; height: 2px; background: var(--cyan); border-radius: 1px; margin: 0 auto 32px; }
+    .hero-desc { font-size: 17px; color: #cbd5e1; line-height: 1.7; max-width: 480px; margin: 0 auto 40px; }
+    .app-store-btn {
+      display: inline-block; background: var(--cyan); color: var(--bg);
+      font-size: 15px; font-weight: 700; letter-spacing: 2px;
+      padding: 14px 40px; border-radius: 10px; text-decoration: none;
+      transition: background .15s, transform .1s;
+    }
+    .app-store-btn:hover { background: #06b6d4; transform: scale(0.98); }
+    .hero-stat { margin-top: 20px; font-size: 13px; color: #475569; letter-spacing: 0.5px; }
+
+    /* Features */
+    .features { padding: 60px 0; }
+    .section-label { font-size: 11px; letter-spacing: 4px; color: var(--slate-dk); text-align: center; margin-bottom: 36px; }
+    .cards { display: grid; gap: 14px; }
+    @media (min-width: 540px) { .cards { grid-template-columns: 1fr 1fr; } }
+    .card {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(148,163,184,0.1);
+      border-radius: 14px; padding: 24px;
+    }
+    .card-icon { font-size: 22px; margin-bottom: 14px; }
+    .card h3 { font-size: 14px; font-weight: 700; letter-spacing: 1.5px; margin-bottom: 8px; }
+    .card p { font-size: 14px; color: var(--slate); line-height: 1.65; }
+
+    /* Sections */
+    section { padding: 60px 0; border-top: 1px solid rgba(148,163,184,0.08); }
+    section h2 { font-size: 11px; font-weight: 700; letter-spacing: 4px; color: var(--slate-dk); margin-bottom: 28px; }
+    section p, section li { font-size: 15px; color: var(--slate); line-height: 1.8; margin-bottom: 16px; }
+    section ul { padding-left: 20px; }
+    section li { margin-bottom: 8px; }
+    section a { color: var(--cyan); text-decoration: none; }
+    section a:hover { text-decoration: underline; }
+    .strong { color: var(--white); font-weight: 600; }
+    .callout {
+      background: var(--cyan-dim); border: 1px solid var(--cyan-bdr);
+      border-radius: 10px; padding: 18px 20px; margin: 20px 0;
+      font-size: 14px; color: var(--slate);
+    }
+
+    /* Footer */
+    footer { border-top: 1px solid rgba(148,163,184,0.08); padding: 32px 0; text-align: center; }
+    footer p { font-size: 13px; color: #475569; }
+    footer a { color: #475569; text-decoration: none; }
+    footer a:hover { color: var(--slate); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container">
+      <a class="nav-brand" href="#">ALPHA BRAVO</a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#support">Support</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <div class="hero">
+      <div class="hero-icon">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9"/>
+          <circle cx="12" cy="12" r="3.5"/>
+          <line x1="12" y1="2" x2="12" y2="5.5"/>
+          <line x1="12" y1="18.5" x2="12" y2="22"/>
+          <line x1="2" y1="12" x2="5.5" y2="12"/>
+          <line x1="18.5" y1="12" x2="22" y2="12"/>
+        </svg>
+      </div>
+      <h1>ALPHA BRAVO</h1>
+      <p class="hero-subtitle">NATO Phonetic Alphabet Trainer</p>
+      <div class="divider"></div>
+      <p class="hero-desc">
+        Train your recognition of the NATO phonetic alphabet with timed visual
+        quizzes and ATC-speed listening exercises. 29 characters. Two modes. One goal.
+      </p>
+      <a class="app-store-btn" href="https://apps.apple.com/app/id000000000">DOWNLOAD ON APP STORE</a>
+      <p class="hero-stat">26 Letters + 3 Numbers &nbsp;·&nbsp; iOS 17+ &nbsp;·&nbsp; $2.99</p>
+    </div>
+
+    <div class="features" id="features">
+      <p class="section-label">WHAT'S INSIDE</p>
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">🎯</div>
+          <h3>VISUAL QUIZ</h3>
+          <p>All 29 characters in random order. 4 choices per question. Wrong answers add a 1.5 s penalty — get them all right for a 5 s bonus.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🎧</div>
+          <h3>LISTENING QUIZ</h3>
+          <p>Hear sequences of NATO words and type what you hear. Four speed levels up to ATC pace. 5 rounds per session.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🏆</div>
+          <h3>PERSONAL BESTS</h3>
+          <p>Your top 3 completion times are stored locally on your device. No account needed.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📡</div>
+          <h3>SPEED BONUSES</h3>
+          <p>Higher listening speed = bigger time deductions for correct answers. ATC mode rewards up to 1 s per correct character.</p>
+        </div>
+      </div>
+    </div>
+
+    <section id="privacy">
+      <h2>PRIVACY POLICY</h2>
+      <p style="color:#64748b; font-size:13px; margin-bottom:24px;">Last updated: May 2026</p>
+
+      <p>Alpha Bravo is built with your privacy in mind. This policy explains what information is collected and how it is used.</p>
+
+      <div class="callout">
+        <span class="strong">The short version:</span> we collect anonymous usage analytics only. No personal data, no account, no cloud sync.
+      </div>
+
+      <p><span class="strong">Data we collect</span></p>
+      <p>The app uses Mixpanel to collect anonymous analytics events:</p>
+      <ul>
+        <li>Quiz started (whether a personal best exists at time of start)</li>
+        <li>Quiz completed (total time, correct count, accuracy)</li>
+        <li>Result shared (which share method was used)</li>
+        <li>Try again tapped (score at time of tap)</li>
+      </ul>
+      <p>No name, email address, location, device identifier, or any personally identifiable information is collected or transmitted.</p>
+
+      <p><span class="strong">Data we do not collect</span></p>
+      <ul>
+        <li>No account or sign-in is required</li>
+        <li>Quiz records are stored locally on your device only</li>
+        <li>No microphone, camera, contacts, or location access is requested</li>
+      </ul>
+
+      <p><span class="strong">Third-party services</span></p>
+      <p>Analytics are processed by <a href="https://mixpanel.com/legal/privacy-policy/" target="_blank" rel="noopener">Mixpanel</a>. You can review their privacy policy at mixpanel.com.</p>
+
+      <p><span class="strong">Children</span></p>
+      <p>The app is rated 4+ and does not knowingly collect data from children under 13.</p>
+
+      <p><span class="strong">Changes</span></p>
+      <p>Any future changes to this policy will be reflected on this page with an updated date at the top.</p>
+
+      <p><span class="strong">Contact</span></p>
+      <p>Questions about privacy? Email <a href="mailto:ensor.matthew@gmail.com">ensor.matthew@gmail.com</a>.</p>
+    </section>
+
+    <section id="support">
+      <h2>SUPPORT</h2>
+      <p>Having an issue or a suggestion? We'd love to hear from you.</p>
+      <p>Email: <a href="mailto:ensor.matthew@gmail.com">ensor.matthew@gmail.com</a></p>
+      <p style="font-size:14px; color:#475569; margin-top:4px;">We aim to respond within 48 hours.</p>
+    </section>
+
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Matthew Ensor &nbsp;&middot;&nbsp; <a href="#privacy">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="#support">Support</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>
